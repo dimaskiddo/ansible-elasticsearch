@@ -23,6 +23,8 @@
 
 - include: elastic_dir.yml
 
+- include: elastic_cfg.yml
+
 - include: elastic_key.yml
   when:
     - elasticsearch_type == 'cluster'

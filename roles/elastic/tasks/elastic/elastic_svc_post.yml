@@ -3,7 +3,7 @@
   systemd:
     daemon_reload: yes
 
-- name: Stop ElasticSearch Service
+- name: Start ElasticSearch Service
   service:
     name: elasticsearch
     enabled: yes
