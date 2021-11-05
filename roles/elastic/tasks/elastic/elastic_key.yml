@@ -13,13 +13,13 @@
   when:
     - inventory_hostname == groups.masters[0]
 
-- name: Set ElasticSearch Self-Signed CA Certificate Ownership
+- name: Set ElasticSearch Self-Signed CA Certificate Ownership in First Master
   file:
     path: /etc/elasticsearch/certs/elastic-stack-ca.p12
     owner: root
     group: elasticsearch
     mode: 0660
-    state: present
+    state: file
   run_once: true
   when:
     - inventory_hostname == groups.masters[0]
@@ -30,13 +30,13 @@
   when:
     - inventory_hostname == groups.masters[0]
 
-- name: Set ElasticSearch Self-Signed Certificate Ownership
+- name: Set ElasticSearch Self-Signed Certificate Ownership in First Master
   file:
     path: /etc/elasticsearch/certs/elastic-certificates.p12
     owner: root
     group: elasticsearch
     mode: 0660
-    state: present
+    state: file
   run_once: true
   when:
     - inventory_hostname == groups.masters[0]
