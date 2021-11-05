@@ -6,6 +6,7 @@
     owner: root
     group: elasticsearch
     mode: 0660
+    remote_src: yes
 
 - name: Remove ElasticSearch Default System Variables
   file:
