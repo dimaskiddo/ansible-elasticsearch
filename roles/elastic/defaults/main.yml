@@ -29,6 +29,9 @@ elasticsearch_gateway_after_nodes: '2'
 # Default for ElasticSearch Zen Minimum Node
 elasticsearch_zen_minimum_node: '2'
 
+# Default for ElasticSearch Java Heap Memory
+elasticsearch_java_heap_memory: '512m'
+
 # Default for Block Wipe
 block_wipe: 'false'
 

@@ -16,7 +16,7 @@ ES_PATH_CONF=/etc/elasticsearch
 #PID_DIR=/var/run/elasticsearch
 
 # Additional Java OPTS
-ES_JAVA_OPTS="-Xms{{ ansible_memtotal_mb / 2 }}m -Xmx{{ ansible_memtotal_mb / 2 }}m"
+ES_JAVA_OPTS="-Xms{{ elasticsearch_java_heap_memory }} -Xmx{{ elasticsearch_java_heap_memory }}"
 
 # Configure restart on package upgrade (true, every other setting will lead to not restarting)
 #RESTART_ON_UPGRADE=true
