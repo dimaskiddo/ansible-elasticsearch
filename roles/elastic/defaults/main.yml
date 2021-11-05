@@ -32,6 +32,9 @@ elasticsearch_zen_minimum_node: '2'
 # Default for ElasticSearch Java Heap Memory
 elasticsearch_java_heap_memory: '512m'
 
+# Default for ElasticSearch Memory Lock
+elasticsearch_memory_lock: 'false'
+
 # Default for Block Wipe
 block_wipe: 'false'
 

@@ -8,3 +8,4 @@
     name: elasticsearch
     enabled: yes
     state: started
+  serial: 1
