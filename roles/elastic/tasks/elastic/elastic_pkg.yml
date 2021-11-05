@@ -1,0 +1,27 @@
+---
+- name: Install ElasticSearch Keyring
+  apt_key:
+    url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+    state: present
+
+- name: Install ElasticSearch Repository
+  lineinfile:
+    dest: /etc/apt/sources.list.d/elastic-{{ elasticsearch_version_major }}.x.list
+    line: "deb https://artifacts.elastic.co/packages/{{ elasticsearch_version_major }}.x/apt stable mainn"
+    create: yes
+    state: present
+
+- name: Install ElasticSearch Packages
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    dpkg_options: "force-confdef,force-confold,force-confmiss"
+    state: present
+  with_items:
+    - elasticsearch={{ elasticsearch_version_major }}.{{ elasticsearch_version_minor }}.{{ elasticsearch_version_revision }}
+
+- name: Hold ElasticSearch Packages from Upgrade
+  dpkg_selections:
+    name: elasticsearch
+    selection: hold

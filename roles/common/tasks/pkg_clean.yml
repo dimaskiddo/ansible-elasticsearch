@@ -1,0 +1,11 @@
+---
+- name: Remove Packages That Are No Longer Required
+  apt:
+    force_apt_get: yes
+    autoremove: yes
+    purge: yes
+
+- name: Remove Packages Cache
+  shell: apt-get -y clean
+  args:
+    warn: false

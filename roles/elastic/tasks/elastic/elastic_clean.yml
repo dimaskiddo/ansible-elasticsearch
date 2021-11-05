@@ -1,0 +1,10 @@
+---
+- name: Remove Exsisting ElasticSearch Data
+  shell: "rm -rf /var/lib/elasticsearch/* || true"
+  args:
+    warn: false
+
+- name: Remove Exsisting ElasticSearch Logs Directory
+  file:
+    path: /var/log/elasticsearch
+    state: absent

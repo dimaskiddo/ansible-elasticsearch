@@ -1,0 +1,51 @@
+---
+# Default for Node IP
+node_ip: "{{ ansible_default_ipv4.address }}"
+
+# Default for Node Name
+node_name: "{{ ansible_hostname }}"
+
+# Default for ElasticSearch Major Version
+elasticsearch_version_major: '7'
+
+# Default for ElasticSearch Minor Version
+elasticsearch_version_minor: '10'
+
+# Default for ElasticSearch Revision Version
+elasticsearch_version_revision: '2'
+
+# Default for ElasticSearch Bootstrap Password
+elasticsearch_password: 'elastic#Passw0rd'
+
+# Default for ElasticSearch Type
+elasticsearch_type: 'single-node'
+
+# Default for ElasticSearch Cluster Name
+elasticsearch_cluster_name: 'elasticsearch-cluster'
+
+# Default for ElasticSearch Gateway After Nodes
+elasticsearch_gateway_after_nodes: '2'
+
+# Default for ElasticSearch Zen Minimum Node
+elasticsearch_zen_minimum_node: '2'
+
+# Default for Block Wipe
+block_wipe: 'false'
+
+# Default for Enable ZFS
+enable_zfs: 'false'
+
+# Default for ZFS Pool Name
+zfs_pool_name: 'data'
+
+# Default for ZFS Pool Wipe
+zfs_pool_wipe: 'false'
+
+# Default for ZFS Dataset Wipe
+zfs_dataset_wipe: 'false'
+
+# Default for Enable LVM
+enable_lvm: 'false'
+
+# Default for LVM Volume Group Name
+lvm_vg_name: 'vg-data'

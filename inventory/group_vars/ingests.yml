@@ -1,0 +1,21 @@
+---
+# Default for Block Wipe
+block_wipe: 'false'
+
+# Default for Enable ZFS
+enable_zfs: 'false'
+
+# Default for ZFS Pool Name
+zfs_pool_name: 'data'
+
+# Default for ZFS Pool Wipe
+zfs_pool_wipe: 'false'
+
+# Default for ZFS Dataset Wipe
+zfs_dataset_wipe: 'false'
+
+# Default for Enable LVM
+enable_lvm: 'false'
+
+# Default for LVM Volume Group Name
+lvm_vg_name: 'vg-data'

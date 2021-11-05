@@ -1,0 +1,4 @@
+---
+- include: facts.yml
+
+- include: elastic/main.yml

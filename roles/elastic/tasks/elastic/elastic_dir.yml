@@ -1,0 +1,21 @@
+---
+- name: Create ElasticSearch Data Directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    mode: u=rwx,g=rs,o-rwx
+    recurse: true
+  with_item:
+    - /var/lib/elasticsearch
+    - /var/lib/elasticsearch/data
+    - /var/lib/elasticsearch/logs
+
+- name: Create ElasticSearch Log Directory
+  file:
+    src: /var/lib/elasticsearch/log
+    dest: /var/log/elasticsearch
+    owner: root
+    group: elasticsearch
+    state: link

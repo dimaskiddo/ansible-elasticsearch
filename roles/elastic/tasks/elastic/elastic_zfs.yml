@@ -1,0 +1,44 @@
+---
+- name: Check ZFS Pool Lists
+  command: zpool list
+  register: zfs_pool_lists
+
+- name: Fail if ZFS Pool is already exists
+  fail:
+    msg: "ZFS Pool already exists, Please Remove The Pool Manually!"
+  when:
+    - zfs_pool_lists.stdout.find(zfs_pool_name) != -1
+    - not zfs_pool_wipe
+
+- name: Clean ZFS Pool if 'zfs_pool_wipe' is true
+  command: zpool destroy -f {{ zfs_pool_name }}
+  when:
+    - zfs_pool_lists.stdout.find(zfs_pool_name) != -1
+    - zfs_pool_wipe
+
+- name: Create ZFS Pool
+  command: zpool create {{ zfs_pool_name }} -O compression=lz4 -O atime=off -O mountpoint=none -o ashift=12 -f /dev/{{ block_device }}1
+  when:
+    - zfs_pool_lists.stdout.find(zfs_pool_name) == -1
+
+- name: Check ZFS Dataset Lists
+  command: zfs list
+  register: zfs_dataset_lists
+
+- name: Fail if ZFS Dataset already exists
+  fail:
+    msg: "ZFS Dataset already exists, Please Remove The Dataset Manually!"
+  when:
+    - zfs_dataset_lists.stdout.find(zfs_pool_name ~ "/elasticsearch") != -1
+    - not zfs_dataset_wipe
+
+- name: Clean ZFS Dataset if 'zfs_dataset_wipe' is true
+  command: zfs destroy -fR {{ zfs_pool_name }}/elasticsearch
+  when:
+    - zfs_dataset_lists.stdout.find(zfs_pool_name ~ "/elasticsearch") != -1
+    - zfs_dataset_wipe
+
+- name: Create ZFS Dataset
+  command: zfs create {{ zfs_pool_name }}/elasticsearch
+  when:
+    - zfs_dataset_lists.stdout.find(zfs_pool_name ~ "/elasticsearch") == -1

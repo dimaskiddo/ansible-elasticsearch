@@ -1,0 +1,50 @@
+---
+- name: Install Python Packages (Debian 9 or Lower)
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - python
+    - python-dev
+  when:
+    - ansible_distribution_version | int < 10
+
+- name: Install Python Packages (Debian 10 or Higher)
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - python2
+    - python2-dev
+  when:
+    - ansible_distribution_version | int >= 10
+
+- name: Download PIP Installer
+  get_url:
+    url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
+    dest: /tmp/get-pip.py
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Running PIP Installer
+  command: python2 /tmp/get-pip.py
+
+- name: Remove PIP Installer
+  file:
+    path: /tmp/get-pip.py
+    state: absent
+
+- name: Install PIP Packages
+  pip:
+    name: "{{ item }}"
+    extra_args: --no-cache-dir
+    state: present
+  with_items:
+    - pip
+    - setuptools
+    - wheel

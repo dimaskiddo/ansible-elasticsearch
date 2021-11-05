@@ -1,0 +1,19 @@
+- hosts: masters:ingests:datas
+  any_errors_fatal: true
+  roles:
+  - role: facts
+
+- hosts: masters:ingests:datas
+  any_errors_fatal: true
+  roles:
+  - role: common
+
+- hosts: masters
+  any_errors_fatal: true
+  roles:
+    - role: elastic
+
+- hosts: ingests:datas
+  any_errors_fatal: true
+  roles:
+    - role: elastic

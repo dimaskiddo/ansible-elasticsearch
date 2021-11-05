@@ -1,0 +1,30 @@
+---
+- include: elastic_block.yml
+  when:
+    - enable_zfs == 'true' or enable_lvm == 'true'
+
+- include: elastic_zfs.yml
+  when:
+    - enable_zfs == 'true'
+
+- include: elastic_lvm.yml
+  when:
+    - enable_lvm == 'true'
+
+- include: elastic_mount.yml
+  when:
+    - enable_zfs == 'true' or enable_lvm == 'true'
+
+- include: elastic_pkg.yml
+
+- include: elastic_svc_pre.yml
+
+- include: elastic_clean.yml
+
+- include: elastic_dir.yml
+
+- include: elastic_key.yml
+  when:
+    - elasticsearch_type == 'cluster'
+
+- include: elastic_svc_post.yml

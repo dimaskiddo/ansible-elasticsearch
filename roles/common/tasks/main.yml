@@ -1,0 +1,28 @@
+---
+- include: facts.yml
+
+- include: pkg_base.yml
+
+- include: pkg_python.yml
+
+- include: pkg_archiver.yml
+
+- include: pkg_monitoring.yml
+
+- include: pkg_networking.yml
+
+- include: pkg_disk.yml
+
+- include: pkg_zfs.yml
+  when:
+    - enable_zfs
+
+- include: pkg_sanoid.yml
+  when:
+    - enable_zfs
+
+- include: pkg_run_one.yml
+
+- include: pkg_clean.yml
+
+- include: sysctl.yml

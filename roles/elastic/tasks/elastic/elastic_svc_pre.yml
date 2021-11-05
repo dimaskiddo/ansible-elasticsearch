@@ -1,0 +1,48 @@
+---
+- name: Copy ElasticSearch Default System Variables as Backup
+  copy:
+    src: /etc/default/elasticsearch
+    dest: /etc/default/elasticsearch.orig~
+    owner: root
+    group: elasticsearch
+    mode: 0660
+
+- name: Remove ElasticSearch Default System Variables
+  file:
+    path: /etc/default/elasticsearch
+    state: absent
+
+- name: Create ElasticSearch System Variables
+  template:
+    src: elasticsearch.j2
+    dest: /etc/default/elasticsearch
+    owner: root
+    group: elasticsearch
+    mode: 0660
+
+- name: Create ElasticSearch Override Service Directory
+  file:
+    path: /etc/systemd/system/elasticsearch.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: true
+
+- name: Override ElasticSearch Service
+  template:
+    src: override.conf.j2
+    dest: /etc/systemd/system/elasticsearch.service.d/override.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Reload ElasticSearch Service
+  systemd:
+    daemon_reload: yes
+
+- name: Stop ElasticSearch Service
+  service:
+    name: elasticsearch
+    enabled: no
+    state: stopped

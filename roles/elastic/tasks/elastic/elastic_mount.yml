@@ -1,0 +1,24 @@
+---
+- name: Create ElasticSearch Data Directory
+  file:
+    path: /var/lib/elasticsearch
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: Set ElasticSearch Data Storage Mountpoint to ElasticSearch Data Directory (ZFS)
+  shell: zfs set mountpoint=/var/lib/elasticsearch {{ zfs_pool_name }}/elasticsearch
+  when:
+    - enable_zfs == 'true'
+
+- name: Set ElasticSearch Data Storage Mountpoint to ElasticSearch Data Directory (LVM)
+  mount:
+    src: "/dev/{{ lvm_vg_name }}/lv-elasticsearch"
+    path: /var/lib/elasticsearch
+    fstype: xfs
+    opts: discard,noatime
+    state: mounted
+    backup: yes
+  when:
+    - enable_lvm == 'true'

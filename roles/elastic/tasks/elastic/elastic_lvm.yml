@@ -1,0 +1,18 @@
+---
+- name: Create Volume Group
+  lvg:
+    pvs: "/dev/{{ block_device }}1"
+    vg: "{{ lvm_vg_name }}"
+
+- name: Create Logical Volume
+  lvol:
+    vg: "{{ lvm_vg_name }}"
+    lv: "lv-elasticsearch"
+    size: 100%FREE
+    force: yes
+
+- name: Format Logical Volume
+  filesystem:
+    dev: "/dev/{{ lvm_vg_name }}/lv-elasticsearch"  
+    fstype: xfs
+    force: yes

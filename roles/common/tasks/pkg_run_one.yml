@@ -1,0 +1,31 @@
+---
+- name: Install Run-One Dependencies Packages
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - procps
+
+- name: Install Run-One from GitHub
+  get_url:
+    url: https://raw.githubusercontent.com/dustinkirkland/run-one/master/run-one
+    dest: /usr/bin/run-one
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create Run-One Link Command Variant
+  file:
+    src: /usr/bin/run-one
+    dest: "/usr/bin/{{ item }}"
+    owner: root
+    group: root
+    state: link
+  with_items:
+    - run-this-one
+    - run-one-constantly
+    - run-one-until-success
+    - run-one-until-failure
+    - keep-one-running

@@ -1,0 +1,52 @@
+---
+# - name: Pin ZFS Packages to Use Backports Repository
+#   template:
+#     src: backports-zfs.j2
+#     dest: /etc/apt/preferences.d/backports-zfs
+#     owner: root
+#     group: root
+#     mode: 0644
+
+- name: Install ZFS Dependencies Packages (Cloud)
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - linux-headers-cloud-amd64
+    - linux-image-cloud-amd64
+    - dpkg-dev
+  when:
+    - linux_image_type == 'cloud'
+
+- name: Install ZFS Dependencies Packages (Desktop)
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - linux-headers-amd64
+    - linux-image-amd64
+    - dpkg-dev
+  when:
+    - linux_image_type == 'desktop'
+
+- name: Install ZFS Packages
+  apt:
+    name: "{{ item }}"
+    # default_release: "{{ ansible_distribution_release }}-backports"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - zfs-dkms
+    - zfsutils-linux
+
+- name: Load ZFS Module to Kernel
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zfs

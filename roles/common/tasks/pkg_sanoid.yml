@@ -1,0 +1,45 @@
+---
+- name: Install Sanoid Dependencies Packages
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - libcapture-tiny-perl
+    - libconfig-inifiles-perl
+    - lzop
+    - mbuffer
+    - pv
+
+- name: Install Sanoid Packages
+  get_url:
+    url: "https://raw.githubusercontent.com/jimsalterjrs/sanoid/v{{ sanoid_version }}/sanoid"
+    dest: /usr/bin/sanoid
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install Syncoid Packages
+  get_url:
+    url: "https://raw.githubusercontent.com/jimsalterjrs/sanoid/v{{ sanoid_version }}/syncoid"
+    dest: /usr/bin/syncoid
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create Sanoid Configuration Directory
+  file:
+    path: /etc/sanoid
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: Create Sanoid Defaults Configuration
+  get_url:
+    url: "https://raw.githubusercontent.com/jimsalterjrs/sanoid/v{{ sanoid_version }}/sanoid.defaults.conf"
+    dest: /etc/sanoid/sanoid.defaults.conf
+    owner: root
+    group: root
+    mode: 0644

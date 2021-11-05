@@ -1,0 +1,18 @@
+---
+# Default for Node IP
+node_ip: "{{ ansible_default_ipv4.address }}"
+
+# Default for Linux Image Type
+linux_image_type: 'cloud'
+
+# Default for Reboot After OS Upgrade
+reboot_upgrade: 'true'
+
+# Default for Enable IPVS
+enable_ip_vs: 'false'
+
+# Default for Enable ZFS
+enable_zfs: 'false'
+
+# Default for Sanoid Version
+sanoid_version: '2.1.0'
