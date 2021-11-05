@@ -11,7 +11,7 @@
   command: /usr/share/elasticsearch/bin/elasticsearch-certutil ca --pass '' --out /etc/elasticsearch/certs/elastic-stack-ca.p12
   run_once: true
   when:
-    - inventory_hostname == masters[0]
+    - inventory_hostname == groups.masters[0]
 
 - name: Set ElasticSearch Self-Signed CA Certificate Ownership
   file:
@@ -22,13 +22,13 @@
     state: present
   run_once: true
   when:
-    - inventory_hostname == masters[0]
+    - inventory_hostname == groups.masters[0]
 
 - name: Generate ElasticSearch Self-Signed Certificate in First Master
   command: /usr/share/elasticsearch/bin/elasticsearch-certutil cert --ca-pass '' --ca /etc/elasticsearch/certs/elastic-stack-ca.p12 --pass '' --out /etc/elasticsearch/certs/elastic-certificates.p12
   run_once: true
   when:
-    - inventory_hostname == masters[0]
+    - inventory_hostname == groups.masters[0]
 
 - name: Set ElasticSearch Self-Signed Certificate Ownership
   file:
@@ -39,7 +39,7 @@
     state: present
   run_once: true
   when:
-    - inventory_hostname == masters[0]
+    - inventory_hostname == groups.masters[0]
 
 - name: Copy ElasticSearch Self-Signed Certificates Directory from First Master
   synchronize:
@@ -47,6 +47,6 @@
     dest: /etc/elasticsearch/certs
     checksum: yes
     mode: pull
-  delegate_to: masters[0]
+  delegate_to: groups.masters[0]
   when:
-    - inventory_hostname != masters[0]
+    - inventory_hostname != groups.masters[0]
