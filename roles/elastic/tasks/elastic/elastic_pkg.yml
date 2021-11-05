@@ -7,7 +7,7 @@
 - name: Install ElasticSearch Repository
   lineinfile:
     dest: /etc/apt/sources.list.d/elastic-{{ elasticsearch_version_major }}.x.list
-    line: "deb https://artifacts.elastic.co/packages/{{ elasticsearch_version_major }}.x/apt stable mainn"
+    line: "deb https://artifacts.elastic.co/packages/{{ elasticsearch_version_major }}.x/apt stable main"
     create: yes
     state: present
 
