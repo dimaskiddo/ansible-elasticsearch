@@ -4,7 +4,7 @@
     path: /etc/elasticsearch/certs
     owner: root
     group: elasticsearch
-    mode: u=rwx,g=rs,o=rx
+    mode: 0755
     state: directory
 
 - name: Generate ElasticSearch Self-Signed CA Certificate in First Master

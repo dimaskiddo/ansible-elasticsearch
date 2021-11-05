@@ -100,7 +100,7 @@ xpack.security.transport.ssl.enabled: true
 xpack.security.transport.ssl.verification_mode: certificate
 xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12
 xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12
-{%- endif %}
+{% endif %}
 #
 discovery.type: {% if elasticsearch_type == 'cluster' %}zen{% else %}single-node{% endif %}{{''}}
 {% if elasticsearch_type == 'cluster' %}discovery.zen.minimum_master_nodes: {{ elasticsearch_zen_minimum_node }}{% else %}#discovery.zen.minimum_master_nodes: {% endif %}{{''}}
