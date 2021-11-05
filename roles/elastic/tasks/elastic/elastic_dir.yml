@@ -14,7 +14,7 @@
 
 - name: Create ElasticSearch Log Directory
   file:
-    src: /var/lib/elasticsearch/log
+    src: /var/lib/elasticsearch/logs
     dest: /var/log/elasticsearch
     owner: root
     group: elasticsearch
