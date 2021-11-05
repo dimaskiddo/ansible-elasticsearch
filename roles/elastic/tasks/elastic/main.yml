@@ -27,4 +27,13 @@
   when:
     - elasticsearch_type == 'cluster'
 
+- include: elastic_bootstrap.yml
+
 - include: elastic_svc_post.yml
+  serial: 1
+  when:
+    - inventory_hostname in groups['masters']
+
+- include: elastic_svc_post.yml
+  when:
+    - inventory_hostname in groups['ingests'] or inventory_hostname in groups['datas']

@@ -7,7 +7,7 @@
     group: elasticsearch
     mode: u=rwx,g=rs,o-rwx
     recurse: true
-  with_item:
+  with_items:
     - /var/lib/elasticsearch
     - /var/lib/elasticsearch/data
     - /var/lib/elasticsearch/logs

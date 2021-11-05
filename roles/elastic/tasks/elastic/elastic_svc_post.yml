@@ -1,7 +1,4 @@
 ---
-- name: Setup ElasticSearch Bootstrap Password
-  shell: echo '{{ elasticsearch_password }}' | /usr/share/elasticsearch/bin/elasticsearch-keystore add -x 'bootstrap.password'
-
 - name: Reload ElasticSearch Service
   systemd:
     daemon_reload: yes
@@ -10,4 +7,4 @@
   service:
     name: elasticsearch
     enabled: yes
-    state: restrated
+    state: started
