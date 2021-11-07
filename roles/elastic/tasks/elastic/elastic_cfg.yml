@@ -1,18 +1,4 @@
 ---
-- name: Copy ElasticSearch Default Configuration as Backup
-  copy:
-    src: /etc/elasticsearch/elasticsearch.yml
-    dest: /etc/elasticsearch/elasticsearch.yml.orig~
-    owner: root
-    group: elasticsearch
-    mode: 0660
-    remote_src: yes
-
-- name: Remove ElasticSearch Default Configuration
-  file:
-    path: /etc/elasticsearch/elasticsearch.yml
-    state: absent
-
 - name: Create ElasticSearch Configuration
   template:
     src: elasticsearch.yml.j2

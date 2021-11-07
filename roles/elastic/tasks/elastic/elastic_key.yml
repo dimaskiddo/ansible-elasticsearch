@@ -7,6 +7,14 @@
     mode: 0755
     state: directory
 
+- name: Remove ElasticSearch Self-Signed Certificates File if Already Exist
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+   - /etc/elasticsearch/certs/elastic-stack-ca.p12
+   - /etc/elasticsearch/certs/elastic-certificates.p12
+   
 - name: Generate ElasticSearch Self-Signed CA Certificate in First Master
   command: /usr/share/elasticsearch/bin/elasticsearch-certutil ca --pass '' --out /etc/elasticsearch/certs/elastic-stack-ca.p12
   run_once: true

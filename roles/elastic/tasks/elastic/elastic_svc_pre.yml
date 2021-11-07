@@ -1,18 +1,4 @@
 ---
-- name: Copy ElasticSearch Default System Variables as Backup
-  copy:
-    src: /etc/default/elasticsearch
-    dest: /etc/default/elasticsearch.orig~
-    owner: root
-    group: elasticsearch
-    mode: 0660
-    remote_src: yes
-
-- name: Remove ElasticSearch Default System Variables
-  file:
-    path: /etc/default/elasticsearch
-    state: absent
-
 - name: Create ElasticSearch System Variables
   template:
     src: elasticsearch.j2
