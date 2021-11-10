@@ -1,4 +1,12 @@
 ---
+- name: Create Operating System Repository File
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Upgrade Operating System
   apt:
     force_apt_get: yes
