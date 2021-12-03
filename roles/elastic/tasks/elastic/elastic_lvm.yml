@@ -9,6 +9,8 @@
     vg: "{{ lvm_vg_name }}"
     lv: "lv-elasticsearch"
     size: 100%FREE
+    state: present
+    shrink: no
     force: yes
 
 - name: Format Logical Volume
