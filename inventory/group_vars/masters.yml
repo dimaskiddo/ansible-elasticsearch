@@ -5,23 +5,26 @@ elasticsearch_java_heap_memory: '512m'
 # Default for ElasticSearch Memory Lock
 elasticsearch_memory_lock: 'false'
 
+# Value for Block Device
+#block_device: 'vdb'
+
 # Default for Block Wipe
-block_wipe: 'false'
+#block_wipe: 'false'
 
 # Default for Enable ZFS
-enable_zfs: 'false'
+#enable_zfs: 'false'
 
 # Default for ZFS Pool Name
-zfs_pool_name: 'data'
+#zfs_pool_name: 'data'
 
 # Default for ZFS Pool Wipe
-zfs_pool_wipe: 'false'
+#zfs_pool_wipe: 'false'
 
 # Default for ZFS Dataset Wipe
-zfs_dataset_wipe: 'false'
+#zfs_dataset_wipe: 'false'
 
 # Default for Enable LVM
-enable_lvm: 'false'
+#enable_lvm: 'false'
 
 # Default for LVM Volume Group Name
-lvm_vg_name: 'vg-data'
+#lvm_vg_name: 'vg-data'
