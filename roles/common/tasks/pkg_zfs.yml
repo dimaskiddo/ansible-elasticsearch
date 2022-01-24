@@ -33,6 +33,17 @@
   when:
     - linux_image_type == 'desktop'
 
+- name: Create ZFS Pre-Loaded Module File
+  blockinfile:
+    path: /etc/modules-load.d/zfs.conf
+    state: present
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+    block: |
+      zfs
+
 - name: Install ZFS Packages
   apt:
     name: "{{ item }}"
