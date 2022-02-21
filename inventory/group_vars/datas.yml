@@ -3,7 +3,7 @@
 elasticsearch_java_heap_memory: '512m'
 
 # Default for ElasticSearch Memory Lock
-elasticsearch_memory_lock: 'false'
+elasticsearch_memory_lock: 'true'
 
 # Value for Block Device
 #block_device: 'vdb'

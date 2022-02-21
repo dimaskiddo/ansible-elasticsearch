@@ -105,6 +105,12 @@ xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/certs/elastic-c
 discovery.type: {% if elasticsearch_type == 'cluster' %}zen{% else %}single-node{% endif %}{{''}}
 {% if elasticsearch_type == 'cluster' %}discovery.zen.minimum_master_nodes: {{ elasticsearch_zen_minimum_node }}{% else %}#discovery.zen.minimum_master_nodes: {% endif %}{{''}}
 #
+{% if elasticsearch_type == 'cluster' %}
 node.master: {% if inventory_hostname in groups['masters'] %}true{% else %}false{% endif %}{{''}}
 node.ingest: {% if inventory_hostname in groups['ingests'] %}true{% else %}false{% endif %}{{''}}
 node.data: {% if inventory_hostname in groups['datas'] %}true{% else %}false{% endif %}{{''}}
+{% else %}
+#node.master: false
+#node.ingest: false
+#node.data: false
+{% endif %}
