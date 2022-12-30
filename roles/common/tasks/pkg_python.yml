@@ -1,5 +1,5 @@
 ---
-- name: Install Python Packages (Debian 9 or Lower)
+- name: Install Python Packages (Debian 9 or Lower) If Intepreter is Python2
   apt:
     name: "{{ item }}"
     force_apt_get: yes
@@ -10,8 +10,9 @@
     - python-dev
   when:
     - ansible_distribution_version | int < 10
+    - ansible_python_interpreter is match(".*python2.*")
 
-- name: Install Python Packages (Debian 10 or Higher)
+- name: Install Python Packages (Debian 10 or Higher) If Intepreter is Python2
   apt:
     name: "{{ item }}"
     force_apt_get: yes
@@ -22,17 +23,50 @@
     - python2-dev
   when:
     - ansible_distribution_version | int >= 10
+    - ansible_python_interpreter is match(".*python2.*")
 
-- name: Download PIP Installer
+- name: Install Python Packages (Debian 10 or Higher) If Intepreter is Python3
+  apt:
+    name: "{{ item }}"
+    force_apt_get: yes
+    update_cache: yes
+    state: present
+  with_items:
+    - python3
+    - python3-dev
+  when:
+    - ansible_distribution_version | int >= 10
+    - ansible_python_interpreter is match(".*python3.*")
+
+- name: Download PIP Installer If Intepreter is Python2
   get_url:
     url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
     dest: /tmp/get-pip.py
     owner: root
     group: root
     mode: 0755
+  when:
+    - ansible_python_interpreter is match(".*python2.*")
 
-- name: Running PIP Installer
+- name: Download PIP Installer If Intepreter is Python3
+  get_url:
+    url: https://bootstrap.pypa.io/pip/get-pip.py
+    dest: /tmp/get-pip.py
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - ansible_python_interpreter is match(".*python3.*")
+
+- name: Running PIP Installer If Intepreter is Python2
   command: python2 /tmp/get-pip.py
+  when:
+    - ansible_python_interpreter is match(".*python2.*")
+
+- name: Running PIP Installer If Intepreter is Python3
+  command: python3 /tmp/get-pip.py
+  when:
+    - ansible_python_interpreter is match(".*python3.*")
 
 - name: Remove PIP Installer
   file:

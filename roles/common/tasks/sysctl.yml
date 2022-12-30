@@ -2,7 +2,7 @@
 - name: Set Sysctl for 'vm.max_map_count'
   sysctl:
     name: vm.max_map_count
-    value: 262144
+    value: "262144"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -11,7 +11,7 @@
 - name: Set Sysctl for 'net.core.somaxconn'
   sysctl:
     name: net.core.somaxconn
-    value: 4096
+    value: "4096"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -20,7 +20,7 @@
 - name: Set Sysctl for 'net.ipv6.conf.default.disable_ipv6'
   sysctl:
     name: net.ipv6.conf.default.disable_ipv6
-    value: 1
+    value: "1"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -29,7 +29,7 @@
 - name: Set Sysctl for 'net.ipv6.conf.all.disable_ipv6'
   sysctl:
     name: net.ipv6.conf.all.disable_ipv6
-    value: 1
+    value: "1"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -38,16 +38,7 @@
 - name: Set Sysctl for 'net.ipv6.conf.lo.disable_ipv6'
   sysctl:
     name: net.ipv6.conf.lo.disable_ipv6
-    value: 1
-    sysctl_file: /etc/sysctl.conf
-    sysctl_set: yes
-    reload: no
-    state: present
-
-- name: Set Sysctl for 'net.ipv6.conf.eth0.disable_ipv6'
-  sysctl:
-    name: net.ipv6.conf.eth0.disable_ipv6
-    value: 1
+    value: "1"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -65,7 +56,7 @@
 - name: Set Sysctl for 'net.core.rmem_max'
   sysctl:
     name: net.core.rmem_max
-    value: 16777216
+    value: "16777216"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -74,7 +65,7 @@
 - name: Set Sysctl for 'net.core.wmem_max'
   sysctl:
     name: net.core.wmem_max
-    value: 16777216
+    value: "16777216"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -101,7 +92,7 @@
 - name: Set Sysctl for 'net.ipv4.tcp_max_orphans'
   sysctl:
     name: net.ipv4.tcp_max_orphans
-    value: 24576
+    value: "24576"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
@@ -110,7 +101,7 @@
 - name: Set Sysctl for 'net.core.netdev_max_backlog'
   sysctl:
     name: net.core.netdev_max_backlog
-    value: 2500
+    value: "2500"
     sysctl_file: /etc/sysctl.conf
     sysctl_set: yes
     reload: no
