@@ -1,12 +1,12 @@
 ---
-- block:  
-  - name: Reload ElasticSearch Service
-    systemd:
-      daemon_reload: yes
+- name: Reload ElasticSearch Service
+  throttle: 1
+  systemd:
+    daemon_reload: yes
 
-  - name: Start ElasticSearch Service
-    service:
-      name: elasticsearch
-      enabled: yes
-      state: started
-  serial: 1
+- name: Start ElasticSearch Service
+  throttle: 1
+  service:
+    name: elasticsearch
+    enabled: yes
+    state: started
