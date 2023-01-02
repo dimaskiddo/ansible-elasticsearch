@@ -8,12 +8,7 @@
   roles:
   - role: common
 
-- hosts: masters
-  any_errors_fatal: true
-  roles:
-    - role: elastic
-
-- hosts: ingests:datas
+- hosts: masters:ingests:datas
   any_errors_fatal: true
   roles:
     - role: elastic
