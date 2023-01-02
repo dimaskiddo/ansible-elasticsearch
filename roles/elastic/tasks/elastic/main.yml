@@ -31,12 +31,4 @@
 
 - include: elastic_bootstrap.yml
 
-- block:
-  - include: elastic_svc_post.yml
-    when:
-    - inventory_hostname in groups['masters']
-  serial: 1
-
 - include: elastic_svc_post.yml
-  when:
-    - inventory_hostname not in groups['masters']
