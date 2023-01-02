@@ -10,7 +10,6 @@
 
 - hosts: masters
   any_errors_fatal: true
-  serial: 1
   roles:
     - role: elastic
 
