@@ -32,3 +32,9 @@
 - include: elastic_bootstrap.yml
 
 - include: elastic_svc_post.yml
+  when:
+    - inventory_hostname in groups['masters']
+
+- include: elastic_svc_post.yml
+  when:
+    - inventory_hostname not in groups['masters']
