@@ -31,10 +31,11 @@
 
 - include: elastic_bootstrap.yml
 
-- include: elastic_svc_post.yml
-  serial: 1
-  when:
+- block:
+  - include: elastic_svc_post.yml
+    when:
     - inventory_hostname in groups['masters']
+  serial: 1
 
 - include: elastic_svc_post.yml
   when:

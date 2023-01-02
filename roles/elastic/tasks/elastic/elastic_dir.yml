@@ -16,6 +16,6 @@
   file:
     src: /var/lib/elasticsearch/logs
     dest: /var/log/elasticsearch
-    owner: root
+    owner: elasticsearch
     group: elasticsearch
     state: link
